@@ -4,7 +4,7 @@ source 'https://rubygems.org'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.6'
+gem 'rails', '5.0.0'
 # Use sqlite3 as the database for Active Record
 gem 'pg', '~> 0.15'
 # Use SCSS for stylesheets
@@ -52,5 +52,6 @@ group :production do
   gem 'puma'
 end
 
+gem 'globalize', github: 'globalize/globalize'
 gem 'spina-template', github: 'denkGroot/Spina-template'
 gem 'spina', github: 'denkGroot/Spina'
