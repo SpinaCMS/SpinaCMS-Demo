@@ -10,7 +10,7 @@ GIT
 
 GIT
   remote: git://github.com/denkGroot/Spina.git
-  revision: b91db07e69c79481c775804825bb9fd8dee7d029
+  revision: 02f29066735506be52a2d1ab337c1df4b3e49bee
   specs:
     spina (0.9.0)
       activemodel-serializers-xml
