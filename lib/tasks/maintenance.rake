@@ -13,5 +13,6 @@ task reset_website: :environment do
   Spina::AttachmentCollection.destroy_all
   Spina::Color.destroy_all
   Spina::Attachment.destroy_all
+  Spina::RewriteRule.destroy_all
   Spina::Account.first.save
 end
