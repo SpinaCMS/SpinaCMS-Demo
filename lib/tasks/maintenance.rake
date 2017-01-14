@@ -9,7 +9,7 @@ task reset_website: :environment do
   Spina::Structure.destroy_all
   Spina::StructurePart.destroy_all
   Spina::StructureItem.destroy_all
-  Spina::PhotoCollectionPhoto.destroy_all
+  Spina::PhotoCollectionsPhoto.destroy_all
   Spina::AttachmentCollection.destroy_all
   Spina::Color.destroy_all
   Spina::Attachment.destroy_all
