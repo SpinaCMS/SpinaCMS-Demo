@@ -5,6 +5,9 @@ task reset_website: :environment do
   Spina::Text.destroy_all
   Spina::Line.destroy_all
   Spina::Photo.destroy_all
+  Spina::PhotoCollection.destroy_all
+  Spina::Structure.destroy_all
+  Spina::Color.destroy_all
   Spina::Attachment.destroy_all
   Spina::Account.first.save
 end
