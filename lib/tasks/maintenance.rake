@@ -7,6 +7,10 @@ task reset_website: :environment do
   Spina::Photo.destroy_all
   Spina::PhotoCollection.destroy_all
   Spina::Structure.destroy_all
+  Spina::StructurePart.destroy_all
+  Spina::StructureItem.destroy_all
+  Spina::PhotoCollectionPhoto.destroy_all
+  Spina::AttachmentCollection.destroy_all
   Spina::Color.destroy_all
   Spina::Attachment.destroy_all
   Spina::Account.first.save
