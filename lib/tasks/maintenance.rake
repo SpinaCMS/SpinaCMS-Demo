@@ -11,7 +11,6 @@ task reset_website: :environment do
   Spina::StructureItem.destroy_all
   Spina::PhotoCollectionsPhoto.destroy_all
   Spina::AttachmentCollection.destroy_all
-  Spina::Color.destroy_all
   Spina::Attachment.destroy_all
   Spina::RewriteRule.destroy_all
   Spina::Account.first.save
