@@ -7,9 +7,10 @@
 %h5 Content
 = @page.content(:text).try(:html_safe)
 
-%h5 Photo
-%p
-  = image_tag @page.content(:photo).try(:file_url)
+- if @page.has_content?(:photo)
+  %h5 Photo
+  %p
+    = image_tag @page.content(:photo).try(:file_url)
 
 %h5 Photo collection
 - if @page.content(:photo_collection).try(:photos)
