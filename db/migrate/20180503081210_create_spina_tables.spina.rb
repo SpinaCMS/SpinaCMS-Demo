@@ -1,5 +1,5 @@
 # This migration comes from spina (originally 1)
-class CreateSpinaTables < ActiveRecord::Migration
+class CreateSpinaTables < ActiveRecord::Migration[4.2]
   def change
     create_table "spina_accounts", force: :cascade do |t|
       t.string   "name"
@@ -31,12 +31,6 @@ class CreateSpinaTables < ActiveRecord::Migration
       t.string   "file"
       t.datetime "created_at", null: false
       t.datetime "updated_at", null: false
-    end
-
-    create_table "spina_colors", force: :cascade do |t|
-      t.text     "content"
-      t.datetime "created_at"
-      t.datetime "updated_at"
     end
 
     create_table "spina_layout_parts", force: :cascade do |t|

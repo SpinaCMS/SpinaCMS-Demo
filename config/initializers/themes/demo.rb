@@ -79,7 +79,4 @@
     deletable:      true,
     view_template:  'demo'
   }]
-
-  theme.plugins = ['reviews']
-
 end
