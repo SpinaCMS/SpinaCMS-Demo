@@ -10,12 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170730083607) do
+ActiveRecord::Schema.define(version: 20180503081218) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "spina_accounts", force: :cascade do |t|
+  create_table "spina_accounts", id: :serial, force: :cascade do |t|
     t.string "name"
     t.string "address"
     t.string "postal_code"
@@ -31,29 +31,29 @@ ActiveRecord::Schema.define(version: 20170730083607) do
     t.boolean "robots_allowed", default: false
   end
 
-  create_table "spina_attachment_collections", force: :cascade do |t|
+  create_table "spina_attachment_collections", id: :serial, force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "spina_attachment_collections_attachments", force: :cascade do |t|
+  create_table "spina_attachment_collections_attachments", id: :serial, force: :cascade do |t|
     t.integer "attachment_collection_id"
     t.integer "attachment_id"
   end
 
-  create_table "spina_attachments", force: :cascade do |t|
+  create_table "spina_attachments", id: :serial, force: :cascade do |t|
     t.string "file"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "spina_colors", force: :cascade do |t|
+  create_table "spina_colors", id: :serial, force: :cascade do |t|
     t.text "content"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "spina_layout_parts", force: :cascade do |t|
+  create_table "spina_layout_parts", id: :serial, force: :cascade do |t|
     t.string "title"
     t.string "name"
     t.integer "layout_partable_id"
@@ -63,19 +63,25 @@ ActiveRecord::Schema.define(version: 20170730083607) do
     t.integer "account_id"
   end
 
-  create_table "spina_line_translations", force: :cascade do |t|
+  create_table "spina_line_translations", id: :serial, force: :cascade do |t|
     t.integer "spina_line_id", null: false
     t.string "locale", null: false
+    t.string "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "content"
     t.index ["locale"], name: "index_spina_line_translations_on_locale"
     t.index ["spina_line_id"], name: "index_spina_line_translations_on_spina_line_id"
   end
 
-  create_table "spina_lines", force: :cascade do |t|
+  create_table "spina_lines", id: :serial, force: :cascade do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "spina_media_folders", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "spina_navigation_items", id: :serial, force: :cascade do |t|
@@ -104,7 +110,7 @@ ActiveRecord::Schema.define(version: 20170730083607) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "spina_page_parts", force: :cascade do |t|
+  create_table "spina_page_parts", id: :serial, force: :cascade do |t|
     t.string "title"
     t.string "name"
     t.datetime "created_at", null: false
@@ -114,21 +120,21 @@ ActiveRecord::Schema.define(version: 20170730083607) do
     t.string "page_partable_type"
   end
 
-  create_table "spina_page_translations", force: :cascade do |t|
+  create_table "spina_page_translations", id: :serial, force: :cascade do |t|
     t.integer "spina_page_id", null: false
     t.string "locale", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
     t.string "title"
     t.string "menu_title"
     t.string "description"
     t.string "seo_title"
     t.string "materialized_path"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["locale"], name: "index_spina_page_translations_on_locale"
     t.index ["spina_page_id"], name: "index_spina_page_translations_on_spina_page_id"
   end
 
-  create_table "spina_pages", force: :cascade do |t|
+  create_table "spina_pages", id: :serial, force: :cascade do |t|
     t.boolean "show_in_menu", default: true
     t.string "slug"
     t.boolean "deletable", default: true
@@ -143,33 +149,56 @@ ActiveRecord::Schema.define(version: 20170730083607) do
     t.string "ancestry"
     t.integer "position"
     t.boolean "active", default: true
+    t.integer "resource_id"
+    t.index ["resource_id"], name: "index_spina_pages_on_resource_id"
   end
 
-  create_table "spina_photo_collections", force: :cascade do |t|
+  create_table "spina_photo_collections", id: :serial, force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "spina_photo_collections_photos", force: :cascade do |t|
+  create_table "spina_photo_collections_photos", id: :serial, force: :cascade do |t|
     t.integer "photo_collection_id"
     t.integer "photo_id"
     t.integer "position"
   end
 
-  create_table "spina_photos", force: :cascade do |t|
+  create_table "spina_photos", id: :serial, force: :cascade do |t|
     t.string "file"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "media_folder_id"
+    t.index ["media_folder_id"], name: "index_spina_photos_on_media_folder_id"
   end
 
-  create_table "spina_rewrite_rules", force: :cascade do |t|
+  create_table "spina_resources", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "label"
+    t.string "view_template"
+    t.integer "parent_page_id"
+    t.string "order_by"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["parent_page_id"], name: "index_spina_resources_on_parent_page_id"
+  end
+
+  create_table "spina_rewrite_rules", id: :serial, force: :cascade do |t|
     t.string "old_path"
     t.string "new_path"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "spina_structure_items", force: :cascade do |t|
+  create_table "spina_settings", id: :serial, force: :cascade do |t|
+    t.string "plugin"
+    t.jsonb "preferences", default: {}
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["plugin"], name: "index_spina_settings_on_plugin"
+  end
+
+  create_table "spina_structure_items", id: :serial, force: :cascade do |t|
     t.integer "structure_id"
     t.integer "position"
     t.datetime "created_at"
@@ -177,7 +206,7 @@ ActiveRecord::Schema.define(version: 20170730083607) do
     t.index ["structure_id"], name: "index_spina_structure_items_on_structure_id"
   end
 
-  create_table "spina_structure_parts", force: :cascade do |t|
+  create_table "spina_structure_parts", id: :serial, force: :cascade do |t|
     t.integer "structure_item_id"
     t.integer "structure_partable_id"
     t.string "structure_partable_type"
@@ -189,27 +218,27 @@ ActiveRecord::Schema.define(version: 20170730083607) do
     t.index ["structure_partable_id"], name: "index_spina_structure_parts_on_structure_partable_id"
   end
 
-  create_table "spina_structures", force: :cascade do |t|
+  create_table "spina_structures", id: :serial, force: :cascade do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "spina_text_translations", force: :cascade do |t|
+  create_table "spina_text_translations", id: :serial, force: :cascade do |t|
     t.integer "spina_text_id", null: false
     t.string "locale", null: false
+    t.text "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.text "content"
     t.index ["locale"], name: "index_spina_text_translations_on_locale"
     t.index ["spina_text_id"], name: "index_spina_text_translations_on_spina_text_id"
   end
 
-  create_table "spina_texts", force: :cascade do |t|
+  create_table "spina_texts", id: :serial, force: :cascade do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "spina_users", force: :cascade do |t|
+  create_table "spina_users", id: :serial, force: :cascade do |t|
     t.string "name"
     t.string "email"
     t.string "password_digest"
