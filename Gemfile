@@ -6,7 +6,7 @@ ruby File.read(".ruby-version").chomp
 gem 'rails', '~> 6.0'
 
 # Use sqlite3 as the database for Active Record
-gem 'pg', '~> 0.15'
+gem 'pg', '~> 1.2.2'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
