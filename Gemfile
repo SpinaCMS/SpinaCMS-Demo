@@ -5,6 +5,8 @@ ruby File.read(".ruby-version").chomp
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.0'
 
+gem 'rack-cors'
+
 # Use sqlite3 as the database for Active Record
 gem 'pg', '~> 1.2.2'
 

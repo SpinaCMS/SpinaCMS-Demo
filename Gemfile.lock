@@ -161,6 +161,8 @@ GEM
     pg (1.2.2)
     puma (3.11.4)
     rack (2.2.2)
+    rack-cors (1.1.1)
+      rack (>= 2.0.0)
     rack-rewrite (1.5.1)
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
@@ -254,6 +256,7 @@ DEPENDENCIES
   jquery-rails
   pg (~> 1.2.2)
   puma
+  rack-cors
   rails (~> 6.0)
   rails_12factor
   sass-rails (~> 5.0)
