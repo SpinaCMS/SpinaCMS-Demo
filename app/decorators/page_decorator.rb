@@ -1,5 +1,9 @@
+require 'net/http'
+require 'uri'
+
 module Spina
   Page.class_eval do
+    after_save :trigger_build
 
     def to_json
       {
@@ -22,6 +26,12 @@ module Spina
         content: page_parts.map(&:to_json).to_h
       }
     end
+
+    private
+
+      def trigger_build
+        Net::HTTP.post URI(Rails.application.secrets.netlify_webhook), ""
+      end
 
   end
 end
