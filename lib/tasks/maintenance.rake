@@ -4,12 +4,12 @@ task reset_website: :environment do
   Spina::PagePart.destroy_all
   Spina::Text.destroy_all
   Spina::Line.destroy_all
-  Spina::Photo.destroy_all
-  Spina::PhotoCollection.destroy_all
+  Spina::Image.destroy_all
+  Spina::ImageCollection.destroy_all
   Spina::Structure.destroy_all
   Spina::StructurePart.destroy_all
   Spina::StructureItem.destroy_all
-  Spina::PhotoCollectionsPhoto.destroy_all
+  Spina::ImageCollectionsImage.destroy_all
   Spina::AttachmentCollection.destroy_all
   Spina::Attachment.destroy_all
   Spina::RewriteRule.destroy_all

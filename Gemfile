@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 ruby File.read(".ruby-version").chomp
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.1.2'
+gem 'rails', '~> 6.0'
 
 # Use sqlite3 as the database for Active Record
 gem 'pg', '~> 0.15'
@@ -24,7 +24,7 @@ gem 'jquery-rails'
 gem 'turbolinks'
 
 # Spina CMS
-gem 'spina', git: 'https://github.com/denkGroot/Spina'
+gem 'spina', git: 'https://github.com/Bramjetten/Spina', branch: 'redesign'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
