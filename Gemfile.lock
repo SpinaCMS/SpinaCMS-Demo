@@ -160,7 +160,7 @@ GEM
       mini_portile2 (~> 2.4.0)
     pg (1.2.2)
     puma (3.11.4)
-    rack (2.2.2)
+    rack (2.2.3)
     rack-cors (1.1.1)
       rack (>= 2.0.0)
     rack-rewrite (1.5.1)
