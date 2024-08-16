@@ -8,3 +8,4 @@ task reset_website: :environment do
   Spina::RewriteRule.destroy_all
   Spina::Account.first.save
 end
+
